@@ -11,6 +11,14 @@ app.get('/', function (req, res) {
   res.render('index', {cityList : cityList});
 });
 
+app.get('/sort', function (req, res) {
+  console.log(req.query.data);
+
+  //A FINIR le traitement de réorganisation du tableau
+  
+  res.render('index', {cityList : cityList});
+});
+
 app.get('/add', function (req, res) {
     request("http://api.openweathermap.org/data/2.5/weather?q="+req.query.city+"&APPID=9b754f1f40051783e4f72c176953866e&units=metric&lang=fr", function(error, response, body) {
       body = JSON.parse(body);
@@ -26,6 +34,6 @@ app.get('/delete', function (req, res) {
 });
 
 
-app.listen(80, function () {
-  console.log("Server listening on port 80");
+app.listen(8080, function () {
+  console.log("Server listening on port 8080");
 });

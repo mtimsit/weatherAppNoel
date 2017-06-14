@@ -1,6 +1,6 @@
 $("document").ready(function() {
 
-  $("li").each(function(i) {
+  /*$("li").each(function(i) {
     console.log(i);
   });
 
@@ -17,6 +17,26 @@ $("document").ready(function() {
   
   $.getJSON("http://api.openweathermap.org/data/2.5/weather?q=Lyon&APPID=9b754f1f40051783e4f72c176953866e&units=metric&lang=fr", function(data) {
     console.log(data);
-  });
+  });*/
+
+  $( function() {
+    $( ".list-group" ).sortable(
+      {
+
+        update: function (event, ui) {
+          var dataId = $(".list-group").sortable('toArray');
+
+          $.ajax({
+              data: {data:dataId},
+              type: 'GET',
+              url: '/sort'
+          });
+        }
+
+
+      }
+    );
+    $( ".list-group" ).disableSelection();
+  } );
   
 })
